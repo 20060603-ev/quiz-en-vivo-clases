@@ -1,5 +1,10 @@
-// Punto de entrada del frontend. Solo arranca las pantallas de cada funcionalidad;
-// la lógica de cada una vive en su propia carpeta (src/tasks, src/sales, src/products…).
-import { startTaskView } from '../../tasks/task.view.ts';
+const createButton = document.getElementById('create-quiz');
+const joinButton = document.getElementById('join-quiz');
 
-startTaskView();
+createButton?.addEventListener('click', () => {
+    alert('La creación de quizzes estará disponible próximamente.');
+});
+
+joinButton?.addEventListener('click', () => {
+    alert('La opción para unirse a una partida estará disponible próximamente.');
+});
