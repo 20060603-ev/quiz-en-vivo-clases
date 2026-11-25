@@ -1,23 +1,43 @@
-// Prueba de extremo a extremo (E2E): un navegador real usa la aplicación como lo haría una persona.
-// Ejecuta:  npm run test:e2e   (la primera vez: npx playwright install chromium)
 import { expect, test } from '@playwright/test';
 
-test('una persona agrega una tarea y la marca como hecha', async ({ page }) => {
+test('muestra la página principal de Quiz en Vivo', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 
-  const title = `Tarea E2E ${Date.now()}`;
-  await page.getByLabel('Título').fill(title);
-  await page.getByRole('button', { name: 'Agregar' }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Quiz en Vivo', exact: true })
+  ).toBeVisible();
 
-  const checkbox = page.getByRole('checkbox', { name: title });
-  await expect(checkbox).toBeVisible();
-  await checkbox.check();
-  await expect(checkbox).toBeChecked();
+  await expect(
+    page.getByRole('button', { name: 'Crear un quiz' })
+  ).toBeVisible();
+
+  await expect(
+    page.getByRole('button', { name: 'Unirse a una partida' })
+  ).toBeVisible();
 });
 
-test('muestra un error si el título está vacío', async ({ page }) => {
+test('muestra un aviso al intentar crear un quiz', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Agregar' }).click();
-  await expect(page.getByRole('alert')).toHaveText('El título es obligatorio');
+
+  page.once('dialog', async (dialog) => {
+    expect(dialog.message()).toBe(
+      'La creación de quizzes estará disponible próximamente.'
+    );
+    await dialog.accept();
+  });
+
+  await page.getByRole('button', { name: 'Crear un quiz' }).click();
+});
+
+test('muestra un aviso al intentar unirse a una partida', async ({ page }) => {
+  await page.goto('/');
+
+  page.once('dialog', async (dialog) => {
+    expect(dialog.message()).toBe(
+      'La opción para unirse a una partida estará disponible próximamente.'
+    );
+    await dialog.accept();
+  });
+
+  await page.getByRole('button', { name: 'Unirse a una partida' }).click();
 });

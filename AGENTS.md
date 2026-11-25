@@ -9,7 +9,8 @@ está organizado el proyecto y qué reglas sigue.
 - Proyecto académico de **Lenguaje de Programación** (5.º semestre, Ingeniería de Sistemas).
 - La persona que programa es **estudiante**: está aprendiendo. Tu rol es enseñar y revisar, no
   resolverle la materia.
-- Producto: <!-- el alumno describe aquí su producto en 2 líneas -->
+- Producto: Quiz en Vivo es una aplicación web educativa que permite a los docentes crear cuestionarios interactivos para evaluar el aprendizaje de sus estudiantes.
+- Los estudiantes pueden unirse a partidas mediante un código y responder preguntas en tiempo real, acumulando puntuaciones según sus respuestas
 
 ## Reglas obligatorias
 
